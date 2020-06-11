@@ -9,25 +9,32 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/photo_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/question_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.40" />
+        app:layout_constraintGuide_percent="0.75" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/title_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tf_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.70" />
+        app:layout_constraintGuide_percent="0.90" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/left_guideline"
@@ -54,6 +61,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="40sp"></TextView>
+
+    <ImageView
+        android:id="@+id/photoID"
+        android:layout_width="0px"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/question_guideline"
+        app:layout_constraintBottom_toTopOf="@+id/photo_guideline"
+        app:layout_constraintLeft_toRightOf="@id/left_guideline"
+        app:layout_constraintRight_toRightOf="@id/right_guideline"
+        ></ImageView>
 
     <TextView
         android:id="@+id/questionID"
@@ -97,6 +114,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@+id/tf_guideline"
         app:layout_constraintLeft_toRightOf="@id/left_guideline"
+        app:layout_constraintRight_toRightOf="@id/right_guideline"
         />
 
 

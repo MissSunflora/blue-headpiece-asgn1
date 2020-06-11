@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,9 +23,8 @@ public class MainActivity extends AppCompatActivity{
     TextView    questionID;
     Button      tru_id, fals_id;
     ProgressBar progressBar;
-    int max=5;
+    ImageView   photoID;
 
-    TextView tv_questions;
     int index_question = 0;
     int counter = 0;
     /*
@@ -36,20 +36,22 @@ public class MainActivity extends AppCompatActivity{
             new Question(R.string.v, true)
     };*/
     List<Question> bank_questions = Arrays.asList(
-            new Question(R.string.i, true),
-            new Question(R.string.ii, false),
-            new Question(R.string.iii, true),
-            new Question(R.string.iv, false),
-            new Question(R.string.v, true)
+            new Question(R.string.i, true, R.drawable.tulips),
+            new Question(R.string.ii, false, R.drawable.broccoli),
+            new Question(R.string.iii, true, R.drawable.sunflower),
+            new Question(R.string.iv, false, R.drawable.smell),
+            new Question(R.string.v, true, R.drawable.orchid)
     );
 
 
     public class Question {
         private int tv_quest;
         private boolean btn_tf;
-        public Question(int tq, boolean answer) {
+        private int img;
+        public Question(int tq, boolean answer, int image) {
             tv_quest = tq;
             btn_tf = answer;
+            img = image;
         }
 
         public int getTv_quest() {
@@ -60,7 +62,11 @@ public class MainActivity extends AppCompatActivity{
             return btn_tf;
         }
 
+        public int getImg() { return img; }
+
     }
+
+    final int PROGRESS_BAR_INCREMENT = (int) Math.ceil(100.0 / 5);
 
 
     @Override
@@ -72,18 +78,17 @@ public class MainActivity extends AppCompatActivity{
         tru_id          = findViewById(R.id.tru_id);
         fals_id         = findViewById(R.id.fals_id);
         progressBar     = findViewById(R.id.progressBar);
-
-
+        photoID         = findViewById(R.id.photoID);
 
         try{
             Collections.shuffle(bank_questions);
+            progressBar.setProgress(0);
             updateQuestion();
 
             tru_id.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //toastMsg("T q: "+ bank_questions.get(index_question).getTv_quest() +" a: "+ bank_questions.get(index_question).isAnswerTrue());
-
                     checkAnswer(true);
                     updateQuestion();
                 }
@@ -93,10 +98,8 @@ public class MainActivity extends AppCompatActivity{
                 @Override
                 public void onClick(View v) {
                     //toastMsg("F q: "+ bank_questions.get(index_question).getTv_quest() +" a: "+ bank_questions.get(index_question).isAnswerTrue());
-
                     checkAnswer(false);
                     updateQuestion();
-
                 }
             });
 
@@ -114,16 +117,15 @@ public class MainActivity extends AppCompatActivity{
         }else{
             try{
                 int question = bank_questions.get(index_question).getTv_quest();
-
                 questionID.setText(question);
-
-
-
+                int q = bank_questions.get(index_question).getImg();
+                photoID.setImageResource(q);
             }catch (Exception e){
                 toastMsg("Error updateQuestion: " + e);
                 e.printStackTrace();
             }
         }
+        progressBar.incrementProgressBy(PROGRESS_BAR_INCREMENT);
     }
 
     private void checkAnswer(boolean userPressedTrue) {
@@ -154,10 +156,7 @@ public class MainActivity extends AppCompatActivity{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //updateQuestion();
-
                         dialog.dismiss();
-
-
                     }
                 })
                 .setPositiveButton("Repeat", new DialogInterface.OnClickListener() {
@@ -168,6 +167,7 @@ public class MainActivity extends AppCompatActivity{
                         index_question = 0;
                         Collections.shuffle(bank_questions);
                         updateQuestion();
+                        progressBar.setProgress(0);
                     }
                 })
                 .show();
