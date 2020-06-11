@@ -76,13 +76,13 @@ public class MainActivity extends AppCompatActivity{
 
 
         try{
-            //Collections.shuffle(bank_questions);
+            Collections.shuffle(bank_questions);
             updateQuestion();
 
             tru_id.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    toastMsg("T q: "+ bank_questions.get(index_question).getTv_quest() +" a: "+ bank_questions.get(index_question).isAnswerTrue());
+                    //toastMsg("T q: "+ bank_questions.get(index_question).getTv_quest() +" a: "+ bank_questions.get(index_question).isAnswerTrue());
 
                     checkAnswer(true);
                     updateQuestion();
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity{
             fals_id.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    toastMsg("F q: "+ bank_questions.get(index_question).getTv_quest() +" a: "+ bank_questions.get(index_question).isAnswerTrue());
+                    //toastMsg("F q: "+ bank_questions.get(index_question).getTv_quest() +" a: "+ bank_questions.get(index_question).isAnswerTrue());
 
                     checkAnswer(false);
                     updateQuestion();
@@ -108,16 +108,16 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void updateQuestion() {
-        if (counter == 4) {
+
+        if (counter == 5) {
             resultDialog(MainActivity.this);
         }else{
-            counter = counter + 1;
             try{
                 int question = bank_questions.get(index_question).getTv_quest();
 
                 questionID.setText(question);
 
-                index_question = index_question + 1;
+
 
             }catch (Exception e){
                 toastMsg("Error updateQuestion: " + e);
@@ -132,11 +132,13 @@ public class MainActivity extends AppCompatActivity{
 
             if (userPressedTrue == answerIsTrue) {
                 toastMsg("Correct");
-                //counter++;
+                counter = counter + 1;
             } else {
                 toastMsg("Incorrect");
                 resultDialog(MainActivity.this);
             }
+            index_question = index_question + 1;
+
         }catch (Exception e){
             toastMsg("Error CheckAnswer: " + e);
             e.printStackTrace();
@@ -151,8 +153,9 @@ public class MainActivity extends AppCompatActivity{
                 .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        updateQuestion();
-                        //dialog.dismiss();
+                        //updateQuestion();
+
+                        dialog.dismiss();
 
 
                     }
@@ -163,7 +166,7 @@ public class MainActivity extends AppCompatActivity{
                         //reset all. thx
                         counter=0;
                         index_question = 0;
-                        //Collections.shuffle(bank_questions);
+                        Collections.shuffle(bank_questions);
                         updateQuestion();
                     }
                 })
