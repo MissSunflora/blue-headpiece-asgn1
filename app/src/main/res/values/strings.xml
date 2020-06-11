@@ -1,4 +1,19 @@
 <resources>
+    <string name="question">QQQQ</string>
+    <string name="app_title">ALL ABOUT FLOWERS</string>
+    <string name="tru">TRUE</string>
+    <string name="fals">FALSE</string>
+
+    <string name="i">TRUE: In 17th century Holland, tulips was considered a true exotic and used as a currency.</string>
+    <string name="ii">FALSE: Broccoli is actually a flower.</string>
+    <string name="iii">TRUE: Some plants produce toxic substances that kill other plants around them-the sunflower is an example.</string>
+    <string name="iv">FALSE: All flowers smell good.</string>
+    <string name="v">TRUE: Some plants such as orchids do not need soil to grow-they get all of their nutrients from the air.</string>
+
+
+
+
+    <!-- -->
     <string name="app_name">Lab2_DPS924_NesaBertanico</string>
     <string name="username_hint">Name</string>
     <string name="lab15">Lab1(5%)</string>
