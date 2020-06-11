@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity{
     };*/
     List<Question> bank_questions = Arrays.asList(
             new Question(R.string.i, true, R.drawable.tulips),
-            new Question(R.string.ii, false, R.drawable.broccoli),
+            new Question(R.string.ii, true, R.drawable.broccoli),
             new Question(R.string.iii, true, R.drawable.sunflower),
             new Question(R.string.iv, false, R.drawable.smell),
-            new Question(R.string.v, true, R.drawable.orchid)
+            new Question(R.string.v, false, R.drawable.orchid)
     );
 
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    final int PROGRESS_BAR_INCREMENT = (int) Math.ceil(100.0 / 5);
+    final int PROGRESS_BAR_INCREMENT = (int) Math.ceil(100.0 / bank_questions.size());
 
 
     @Override
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity{
 
         try{
             Collections.shuffle(bank_questions);
-            progressBar.setProgress(0);
+            //progressBar.setProgress(0);
             updateQuestion();
 
             tru_id.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +125,6 @@ public class MainActivity extends AppCompatActivity{
                 e.printStackTrace();
             }
         }
-        progressBar.incrementProgressBy(PROGRESS_BAR_INCREMENT);
     }
 
     private void checkAnswer(boolean userPressedTrue) {
@@ -135,11 +134,14 @@ public class MainActivity extends AppCompatActivity{
             if (userPressedTrue == answerIsTrue) {
                 toastMsg("Correct");
                 counter = counter + 1;
+                progressBar.incrementProgressBy(PROGRESS_BAR_INCREMENT);
+                index_question = index_question + 1;
+
             } else {
                 toastMsg("Incorrect");
                 resultDialog(MainActivity.this);
             }
-            index_question = index_question + 1;
+
 
         }catch (Exception e){
             toastMsg("Error CheckAnswer: " + e);
@@ -155,8 +157,17 @@ public class MainActivity extends AppCompatActivity{
                 .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //updateQuestion();
-                        dialog.dismiss();
+                        if (index_question <= 4){
+                            //counter = counter + 1;
+                            //progressBar.incrementProgressBy(PROGRESS_BAR_INCREMENT);
+                            //index_question = index_question + 1;
+                        }else{
+                            counter=0;
+                            index_question = 0;
+                            //Collections.shuffle(bank_questions);
+                            updateQuestion();
+                            progressBar.setProgress(0);
+                        }
                     }
                 })
                 .setPositiveButton("Repeat", new DialogInterface.OnClickListener() {
