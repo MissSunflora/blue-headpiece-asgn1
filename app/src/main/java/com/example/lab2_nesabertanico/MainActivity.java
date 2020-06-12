@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity{
             return tv_quest;
         }
 
-        public boolean isAnswerTrue() {
+        public boolean isAnswerCorrect() {
             return btn_tf;
         }
 
@@ -82,13 +82,11 @@ public class MainActivity extends AppCompatActivity{
 
         try{
             Collections.shuffle(bank_questions);
-            //progressBar.setProgress(0);
             updateQuestion();
 
             tru_id.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //toastMsg("T q: "+ bank_questions.get(index_question).getTv_quest() +" a: "+ bank_questions.get(index_question).isAnswerTrue());
                     checkAnswer(true);
                     updateQuestion();
                 }
@@ -97,7 +95,6 @@ public class MainActivity extends AppCompatActivity{
             fals_id.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //toastMsg("F q: "+ bank_questions.get(index_question).getTv_quest() +" a: "+ bank_questions.get(index_question).isAnswerTrue());
                     checkAnswer(false);
                     updateQuestion();
                 }
@@ -129,7 +126,7 @@ public class MainActivity extends AppCompatActivity{
 
     private void checkAnswer(boolean userPressedTrue) {
         try{
-            boolean answerIsTrue = bank_questions.get(index_question).isAnswerTrue();
+            boolean answerIsTrue = bank_questions.get(index_question).isAnswerCorrect();
 
             if (userPressedTrue == answerIsTrue) {
                 toastMsg("Correct");
@@ -158,13 +155,10 @@ public class MainActivity extends AppCompatActivity{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (index_question <= 4){
-                            //counter = counter + 1;
-                            //progressBar.incrementProgressBy(PROGRESS_BAR_INCREMENT);
-                            //index_question = index_question + 1;
+                            toastMsg("Cancel");
                         }else{
                             counter=0;
                             index_question = 0;
-                            //Collections.shuffle(bank_questions);
                             updateQuestion();
                             progressBar.setProgress(0);
                         }
@@ -173,7 +167,6 @@ public class MainActivity extends AppCompatActivity{
                 .setPositiveButton("Repeat", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //reset all. thx
                         counter=0;
                         index_question = 0;
                         Collections.shuffle(bank_questions);
@@ -185,78 +178,8 @@ public class MainActivity extends AppCompatActivity{
     }
 
 
-/*
-   THIS IS MY FIRST CODE:
-    private void checkAnswer(boolean userPressedTrue) {
-        try{
-            boolean answerIsTrue = bank_questions.get(index_question).isAnswerTrue();
-
-            if (userPressedTrue == answerIsTrue) {
-                toastMsg("Correct");
-                counter++;
-                if (counter == 5){
-                    resultDialog(MainActivity.this);
-                }
-            } else {
-                toastMsg("Incorrect");
-                resultDialog(MainActivity.this);
-            }
-        }catch (Exception e){
-        toastMsg("Error CheckAnswer: " + e);
-        e.printStackTrace();
-    }
-    }
-
-    private void updateQuestion() {
-
-        try{
-            int question = bank_questions.get(index_question).getTv_quest();
-
-            questionID.setText(question);
-
-            index_question++;
-
-        }catch (Exception e){
-            toastMsg("Error updateQuestion: " + e);
-            e.printStackTrace();
-        }
-    }
-
-    private void next() {
-        index_question = (index_question + 1) % bank_questions.size();
-        updateQuestion();
-    }
-
-    private void resultDialog(Activity activity){
-        new AlertDialog.Builder(activity)
-
-                .setTitle("Result")
-                .setMessage("Your score is: " +counter + " out of 5.")
-                .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        updateQuestion();
-                        //dialog.dismiss();
-
-
-                    }
-                })
-                .setPositiveButton("Repeat", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //reset all. thx
-                        counter=0;
-                        //Collections.shuffle(bank_questions);
-                        //updateQuestion();
-
-                    }
-                })
-                .show();
-    }
-
- */
     /**
-     *this method makes it easier to use toast to output a message in the screen
+     *this method makes it easier for me to use toast to output a message in the screen
      * @param msg
      */
     private void toastMsg(String msg){

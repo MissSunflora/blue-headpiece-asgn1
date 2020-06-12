@@ -3,18 +3,17 @@
     <string name="app_title">FLOWERS FACTS</string>
     <string name="tru">TRUE</string>
     <string name="fals">FALSE</string>
+    <string name="img_desc">pink tree background</string>
 
-    <string name="i">TRUE: The time period where the flower was so expensive is now known as "Tulip Mania."</string>
-    <string name="ii">TRUE: Broccoli is actually a flower.</string>
-    <string name="iii">TRUE: Sunflowers track the sun, this behaviour is called heliotropism.</string>
-    <string name="iv">FALSE: All flowers smell good.</string>
-    <string name="v">FALSE: Orchids are Carnivorous</string>
-
-
+    <string name="i">The time period where the flower was so expensive is now known as "Tulip Mania."</string>
+    <string name="ii">Broccoli is actually a flower.</string>
+    <string name="iii">Sunflowers track the sun, this behaviour is called heliotropism.</string>
+    <string name="iv">All flowers smell good.</string>
+    <string name="v">Orchids are Carnivorous</string>
 
 
     <!-- -->
-    <string name="app_name">Assignment2_DPS924_NesaBertanico</string>
+    <string name="app_name">Assignment1_DPS924_NesaBertanico</string>
 
 
 </resources>

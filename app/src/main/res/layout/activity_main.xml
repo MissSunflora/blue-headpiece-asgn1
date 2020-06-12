@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.45" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/question_guideline"
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.90" />
+        app:layout_constraintGuide_percent="0.302" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/left_guideline"
@@ -62,20 +62,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.90" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg"
-        android:contentDescription="pink tree background"
+        android:contentDescription="@string/img_desc"
 
         ></ImageView>
 
     <TextView
         android:id="@+id/titleID"
         android:layout_width="0px"
-        android:layout_height="0px"
+        android:layout_height="wrap_content"
         android:text="@string/app_title"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/title_guideline"
@@ -90,10 +90,10 @@
 
     <ImageView
         android:id="@+id/photoID"
-        android:layout_width="0px"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/question_guideline"
-        app:layout_constraintBottom_toTopOf="@+id/photo_guideline"
+        android:layout_width="470px"
+        android:layout_height="470px"
+        app:layout_constraintTop_toTopOf="@id/photo_guideline"
+        app:layout_constraintBottom_toTopOf="@+id/question_guideline"
         app:layout_constraintLeft_toRightOf="@id/left_guideline"
         app:layout_constraintRight_toRightOf="@id/right_guideline"
         ></ImageView>
@@ -106,12 +106,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         android:paddingRight="30px"
         android:paddingLeft="30px"
-        android:paddingTop="30px"
-        android:paddingBottom="30px"
+        android:paddingTop="20px"
+        android:paddingBottom="20px"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="@+id/title_guideline"
-        app:layout_constraintLeft_toRightOf="@id/outerleft_guideline"
-        app:layout_constraintRight_toRightOf="@id/outerright_guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:background="@color/YYY"
         android:textColor="@color/DeepPink"
         >
@@ -125,6 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tru"
+        android:background="@color/XDarkOliveGreen"
         app:layout_constraintTop_toTopOf="@+id/question_guideline"
         app:layout_constraintLeft_toRightOf="@id/left_guideline">
 
@@ -134,8 +135,9 @@
     <Button
         android:id="@+id/fals_id"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0px"
         android:text="@string/fals"
+        android:background="@color/XViolet"
         app:layout_constraintTop_toTopOf="@+id/question_guideline"
         app:layout_constraintRight_toRightOf="@id/right_guideline">
 
@@ -145,7 +147,7 @@
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0px"
         app:layout_constraintTop_toTopOf="@+id/tf_guideline"
         app:layout_constraintLeft_toRightOf="@id/left_guideline"
         app:layout_constraintRight_toRightOf="@id/right_guideline"
